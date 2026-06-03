@@ -4,11 +4,8 @@ import twig from '@vituum/vite-plugin-twig'
 export default {
     plugins: [
         vituum(),
-        twig()
+        twig({
+            root: './src',
+        }),
     ],
-    build: {
-        rollupOptions: {
-            input: ['index.twig.html']
-        }
-    }
 }
