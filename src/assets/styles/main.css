@@ -1,1 +1,38 @@
 @import 'reset-css';
+
+@layer dashi-base, dashi-components, dashi-utilities;
+
+@layer dashi-base {
+  :root {
+    --dashi-text-main: #666;
+    --dashi-text-strong: #000;
+    --dashi-text-muted: #999;
+    --dashi-bg-main: #f2f2f2;
+    --dashi-bg-highlight: #fcfcfc;
+    --dashi-bg-optional: #ececec
+
+    --dashi-fz-pc: 1.65rem;
+    --dashi-lh-pc: 1.65;
+
+    --dashi-fz: var(--dashi-fz-pc);
+    --dashi-lh: var(--dashi-lh-pc);
+  }
+
+  html, body {
+    font-size: 62.5%;
+  }
+  body {
+    --fz: var(--dashi-fz);
+    --lh: var(--dashi-lh);
+    --fc: var(--dashi-text-main);
+    font-size: var(--fz);
+    line-height: var(--lh);
+    color: var(--fc);
+  }
+}
+
+@layer dashi-components {
+  .button {
+    background-color: var(--color-primary);
+  }
+}
