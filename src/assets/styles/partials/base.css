@@ -12,7 +12,7 @@
   
   --dashi-bg-main: #F1F1F1;
   --dashi-bg-highlight: #fcfcfc;
-  --dashi-bg-optional: #ececec;
+  --dashi-bg-optional: #F1F1F1;
 
   --dashi-ls: 0.05em;
 
@@ -36,6 +36,13 @@
 
   --dashi-max-text-length: 40; /* 1行の最大文字数。単位：icを想定 */
   --dashi-content-mb: 30; /* 単位：pxを想定 */
+
+  --dashi-text-indent: 0; /* 段落最初のインデント。単位：emを想定 */
+
+  --dashi-space-main: 30; /* メインコンテンツの上下の余白。単位：pxを想定 */
+  --dashi-space-small: calc(var(--dashi-space-main) / 3 /2); /* 見出しの上下の余白。単位：pxを想定 */
+  --dashi-radius: 5;
+  --dashi-radius-small: 3;
 }
 
 * {
@@ -90,11 +97,21 @@ a.button, button, nav a {
   }
 }
 
+strong {
+  color: var(--dashi-text-strong);
+  font-weight: 650;
+}
+
 hr {
   border: 1px solid var(--dashi-stroke);
   margin-top: calc(var(--dashi-content-mb) * 1.75 * 1px);
   margin-bottom: calc(var(--dashi-content-mb) * 1.75 * 1px);
   border-bottom: none;
+}
+
+p {
+  --indent: var(--dashi-text-indent);
+  text-indent: calc(var(--indent) * 1em);
 }
 
 nav li > a {
@@ -108,7 +125,9 @@ p, ul, ol, dl, blockquote, pre, table, figure, details, summary, hgroup {
   line-height: 1;
 }
 
-#main {
+#main, .main {
+  padding-top: 30px;
+  padding-bottom: 30px;
   /* 基本テキストコンテンツの設定 */
   p, ul, ol, dl, blockquote, pre, table, figure, details, summary, hgroup {
     --max-horizontal-length: var(--dashi-max-text-length);
@@ -140,6 +159,9 @@ p, ul, ol, dl, blockquote, pre, table, figure, details, summary, hgroup {
     --lh: var(--dashi-lh);
     &:first-child {
       margin-top: 0;
+    }
+    & + *:not(p) {
+      margin-top: 1.75em;
     }
   }
 
@@ -222,5 +244,65 @@ p, ul, ol, dl, blockquote, pre, table, figure, details, summary, hgroup {
   * + ul, * + ol, * + dl {
     margin-top: -1.1em;
     margin-bottom: 1.1em;
+  }
+}
+
+.content-container {
+  --padding: var(--dashi-space-main);
+  padding: calc(var(--padding) * 1px);
+  background-color: var(--dashi-bg-highlight);
+  max-width: calc(100svw - 60px);
+  margin-left: auto;
+  margin-right: auto;
+  --radius: var(--dashi-radius, 5);
+  border-radius: calc(var(--dashi-radius) * 1px);
+  .content {
+    margin: 0 auto;
+    max-width: fit-content;
+  }
+}
+
+table {
+  border-top: 1px solid var(--dashi-stroke);
+  th, td {
+    font-size: 1em;
+    padding: 0.675em;
+    border-bottom: 1px solid var(--dashi-stroke);
+  }
+  th {
+    font-weight: bold;
+    letter-spacing: 0;
+    text-align: left;
+    min-width: 7em;
+    max-width: 20%;
+    /* text-align: justify; */
+  }
+  tr:nth-child(even) {
+    th,td {
+      background-color: var(--dashi-bg-optional);
+    }
+    td {
+      color: color-mix(in oklch, var(--dashi-text-main) 75%, #000);
+    }
+  }
+}
+
+.table-container {
+  container-type: inline-size;
+  container-name: dashi-has-table;
+}
+
+@container dashi-has-table (width < 380px) {
+  table, table * {
+    display: block !important;
+  }
+  table th,table td {
+    width: 100%;
+    min-width: unset;
+    max-width: unset;
+  }
+  table th {
+    border-bottom: none;
+    padding-bottom: 0em;
   }
 }
