@@ -24,6 +24,10 @@ main, #main {
 
 #masthead {
   grid-area: masthead;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 17px;
   .title {
     --fz-ratio: 1.685;
     --fz: calc(var(--dashi-fz) * var(--fz-ratio));
@@ -32,7 +36,7 @@ main, #main {
     color: var(--dashi-text-strong);
   }
   .description {
-    --fz-ratio: 0.85;
+    --fz-ratio: 0.8;
     --fz: calc(var(--dashi-fz) * var(--fz-ratio));
     font-size: var(--fz);
     color: var(--dashi-text-muted);
@@ -41,13 +45,28 @@ main, #main {
 
 #global-nav {
   grid-area: nav;
+  .nav-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 17px;
+  }
+  .nav-item {
+    list-style: none;
+  }
 }
 
 #global-footer {
-  padding: 1em;
+  padding-top: 0;
+  padding-bottom: 7px;
+  padding-left: 30px;
+  padding-right: 30px;
   .copyright {
     --fz: var(--dashi-fz);
     --fz-ratio: 0.625;
+    border-top: 1px solid var(--dashi-stroke);
+    padding-top: 7px;
     font-size: calc(var(--fz) * var(--fz-ratio));
     text-align: center;
   }

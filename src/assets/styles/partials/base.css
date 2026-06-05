@@ -3,6 +3,8 @@
   --dashi-text-strong: #000;
   --dashi-text-muted: #999;
 
+  --dashi-stroke: #D4D4D4;
+
   --dashi-link: #1F62A9;
   --dashi-link-visited: color-mix(in oklch, var(--dashi-link) 80%, #2B2B2B);
   --dashi-link-hover: color-mix(in oklch, var(--dashi-link) 80%, #FFFFFF);
@@ -11,6 +13,7 @@
   --dashi-bg-main: #F1F1F1;
   --dashi-bg-highlight: #fcfcfc;
   --dashi-bg-optional: #ececec;
+
 
   --dashi-fz-mb: 1.55rem;
   --dasshi-lh-mb: 1.55;
@@ -65,5 +68,17 @@ a {
 a.button, button, nav a {
   &:hover {
     text-decoration: none;
+  }
+}
+
+h1, h2, h3, h4, h5, h6,
+p, ul, ol, dl, blockquote, pre, table, figure, details, summary, hgroup {
+  line-height: 1;
+}
+
+#main {
+  p, ul, ol, blockquote, pre, table, figure, details, summary, hgroup {
+    --lh: var(--dashi-lh);
+    line-height: calc(var(--lh) * 1em);
   }
 }
