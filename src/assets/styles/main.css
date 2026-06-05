@@ -1,38 +1,55 @@
 @import 'reset-css';
+@import 'partials/base.css';
 
-@layer dashi-base, dashi-components, dashi-utilities;
 
-@layer dashi-base {
-  :root {
-    --dashi-text-main: #666;
-    --dashi-text-strong: #000;
-    --dashi-text-muted: #999;
-    --dashi-bg-main: #f2f2f2;
-    --dashi-bg-highlight: #fcfcfc;
-    --dashi-bg-optional: #ececec
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
-    --dashi-fz-pc: 1.65rem;
-    --dashi-lh-pc: 1.65;
+main, #main {
+  flex: 1;
+}
 
-    --dashi-fz: var(--dashi-fz-pc);
-    --dashi-lh: var(--dashi-lh-pc);
-  }
+#global-header {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-areas: "masthead nav";
+  align-items: center;
+  background-color: var(--dashi-bg-highlight);
+  padding: 1em;
+  border-bottom: 1px solid var(--dashi-bg-optional);
+}
 
-  html, body {
-    font-size: 62.5%;
-  }
-  body {
-    --fz: var(--dashi-fz);
-    --lh: var(--dashi-lh);
-    --fc: var(--dashi-text-main);
+#masthead {
+  grid-area: masthead;
+  .title {
+    --fz-ratio: 1.685;
+    --fz: calc(var(--dashi-fz) * var(--fz-ratio));
+    font-weight: 600;
     font-size: var(--fz);
-    line-height: var(--lh);
-    color: var(--fc);
+    color: var(--dashi-text-strong);
+  }
+  .description {
+    --fz-ratio: 0.85;
+    --fz: calc(var(--dashi-fz) * var(--fz-ratio));
+    font-size: var(--fz);
+    color: var(--dashi-text-muted);
   }
 }
 
-@layer dashi-components {
-  .button {
-    background-color: var(--color-primary);
+#global-nav {
+  grid-area: nav;
+}
+
+#global-footer {
+  padding: 1em;
+  .copyright {
+    --fz: var(--dashi-fz);
+    --fz-ratio: 0.625;
+    font-size: calc(var(--fz) * var(--fz-ratio));
+    text-align: center;
   }
 }
+

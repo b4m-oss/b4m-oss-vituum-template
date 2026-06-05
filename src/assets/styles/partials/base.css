@@ -1,0 +1,69 @@
+:root {
+  --dashi-text-main: #3C3C3C;
+  --dashi-text-strong: #000;
+  --dashi-text-muted: #999;
+
+  --dashi-link: #1F62A9;
+  --dashi-link-visited: color-mix(in oklch, var(--dashi-link) 80%, #2B2B2B);
+  --dashi-link-hover: color-mix(in oklch, var(--dashi-link) 80%, #FFFFFF);
+  --dashi-link-active: color-mix(in oklch, var(--dashi-link) 80%, #1E57FF);
+  
+  --dashi-bg-main: #F1F1F1;
+  --dashi-bg-highlight: #fcfcfc;
+  --dashi-bg-optional: #ececec;
+
+  --dashi-fz-mb: 1.55rem;
+  --dasshi-lh-mb: 1.55;
+
+  --dashi-fz-pc: 1.65rem;
+  --dashi-lh-pc: 1.65;
+
+  @media (min-width: 768px) {
+    --dashi-fz: var(--dashi-fz-pc);
+    --dashi-lh: var(--dashi-lh-pc);
+  }
+
+  --dashi-fz: var(--dashi-fz-mb);
+  --dashi-lh: var(--dashi-lh-mb);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+body {
+  --fz: var(--dashi-fz);
+  --lh: var(--dashi-lh);
+  --fc: var(--dashi-text-main);
+  --bg: var(--dashi-bg-main);
+  font-size: var(--fz);
+  line-height: var(--lh);
+  color: var(--fc);
+  background-color: var(--bg);
+  margin-block: calc((1em - 1lh) / 2) !important; /* ハーフレディング */
+}
+
+a {
+  color: var(--dashi-link);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  &:visited {
+    color: var(--dashi-link-visited);
+  }
+  &:hover {
+    color: var(--dashi-link-hover);
+    text-decoration: underline;
+  }
+  &:active {
+    color: var(--dashi-link-active);
+  }
+}
+
+a.button, button, nav a {
+  &:hover {
+    text-decoration: none;
+  }
+}
