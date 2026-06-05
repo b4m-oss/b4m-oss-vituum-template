@@ -97,6 +97,16 @@ a.button, button, nav a {
   }
 }
 
+@media (min-width: 720px) {
+  .hide-for-pc {
+    display: none;
+  }
+  .show-for-mobile {
+    display: block;
+  }
+}
+
+
 strong {
   color: var(--dashi-text-strong);
   font-weight: 650;
@@ -142,11 +152,8 @@ p, ul, ol, dl, blockquote, pre, table, figure, details, summary, hgroup {
     --lh: var(--dashi-lh);
     line-height: var(--lh);
     max-width: calc(var(--dashi-fz) * var(--dashi-max-text-length));
-  }
-
-  hr {
-    margin-left: unset;
-    margin-right: unset;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   [class^="heading-"] {
@@ -179,9 +186,9 @@ p, ul, ol, dl, blockquote, pre, table, figure, details, summary, hgroup {
     --fz: calc(var(--dashi-fz) * var(--fz-ratio));
     font-weight: 800;
     font-size: var(--fz);
-    color: var(--dashi-text-strong);
+    color: color-mix(in oklch, var(--dashi-text-strong) 60%, #FFFFFF);
     margin-top: calc(var(--dashi-fz) * 2);
-    margin-bottom: calc(var(--dashi-fz) * 0.55);
+    margin-bottom: calc(var(--dashi-fz) * 0.675);
   }
   .heading-3 {
     --fz-ratio: 1.35;
@@ -193,9 +200,21 @@ p, ul, ol, dl, blockquote, pre, table, figure, details, summary, hgroup {
     margin-bottom: calc(var(--dashi-fz) * 0.7125);
     color: color-mix(in oklch, var(--dashi-text-main) 90%, #FFFFFF);
     padding-bottom: 0.25em;
-    border-bottom: 2px solid var(--dashi-stroke);
     width: fit-content;
-    padding-bottom: 0.35em;
+    padding-bottom: 0.625em;
+    min-width: calc(var(--dashi-fz) * var(--dashi-max-text-length));
+    position: relative;
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 2.5em;
+      height: 2px;
+      background-color: var(--dashi-stroke);
+      margin-top: 0.25em;
+    }
   }
 
   .heading-4 {
@@ -252,18 +271,26 @@ p, ul, ol, dl, blockquote, pre, table, figure, details, summary, hgroup {
   padding: calc(var(--padding) * 1px);
   background-color: var(--dashi-bg-highlight);
   max-width: calc(100svw - 60px);
+  /* width: fit-content; */
   margin-left: auto;
   margin-right: auto;
   --radius: var(--dashi-radius, 5);
   border-radius: calc(var(--dashi-radius) * 1px);
   .content {
     margin: 0 auto;
-    max-width: fit-content;
+    max-width: 100%;
   }
 }
 
 table {
-  border-top: 1px solid var(--dashi-stroke);
+  position: relative;
+  min-width: 20ic;
+  max-width: 1180px;
+
+  tbody tr:first-child {
+    border-top: 1px solid var(--dashi-stroke);
+  }
+  
   th, td {
     font-size: 1em;
     padding: 0.675em;
@@ -285,11 +312,47 @@ table {
       color: color-mix(in oklch, var(--dashi-text-main) 75%, #000);
     }
   }
+
+  /* 横に長いテーブルの設定 */
+  thead {
+    tr {
+      position: relative;
+      z-index: 10;
+    }
+    th {
+      background-color: var(--dashi-bg-highlight);
+      position: sticky;
+      border-top: 1px solid var(--dashi-stroke);
+      top: -1px;
+      background-color: var(--dashi-bg-highlight);
+    }
+  }
+  tr:has(> :nth-child(3)) {
+    position: relative;
+    th {
+      max-width: 15%;
+      position: sticky;
+      left: 0;
+      background-color: var(--dashi-bg-highlight);
+    }
+    &:nth-child(even) th {
+      background-color: var(--dashi-bg-optional);
+    }
+    td {
+      min-width: 15ic;
+      max-width: 35ic;
+    }
+  }
 }
 
 .table-container {
   container-type: inline-size;
   container-name: dashi-has-table;
+  max-height: 40em;
+  overflow: scroll;
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @container dashi-has-table (width < 380px) {
