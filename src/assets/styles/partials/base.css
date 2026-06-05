@@ -14,9 +14,12 @@
   --dashi-bg-highlight: #fcfcfc;
   --dashi-bg-optional: #ececec;
 
+  --dashi-ls: 0.05em;
 
   --dashi-fz-mb: 1.55rem;
   --dasshi-lh-mb: 1.55;
+
+  --dashi-lh-heading-mb: 1.15;
 
   --dashi-fz-pc: 1.65rem;
   --dashi-lh-pc: 1.65;
@@ -24,10 +27,15 @@
   @media (min-width: 768px) {
     --dashi-fz: var(--dashi-fz-pc);
     --dashi-lh: var(--dashi-lh-pc);
+    /* --dashi-lh-heading: var(--dashi-lh-heading-pc); */
   }
 
   --dashi-fz: var(--dashi-fz-mb);
   --dashi-lh: var(--dashi-lh-mb);
+  --dashi-lh-heading: var(--dashi-lh-heading-mb);
+
+  --dashi-max-text-length: 40; /* 1行の最大文字数。単位：icを想定 */
+  --dashi-content-mb: 30; /* 単位：pxを想定 */
 }
 
 * {
@@ -36,16 +44,27 @@
 
 html {
   font-size: 62.5%;
+  font-feature-settings: "palt";
+  text-align: justify;
 }
 body {
   --fz: var(--dashi-fz);
   --lh: var(--dashi-lh);
   --fc: var(--dashi-text-main);
   --bg: var(--dashi-bg-main);
+  --ls: var(--dashi-ls);
+  letter-spacing: var(--ls);
   font-size: var(--fz);
   line-height: var(--lh);
   color: var(--fc);
   background-color: var(--bg);
+
+  /* Noto Sans JP Settings */
+  font-family: "Noto Sans JP", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 350;
+  font-style: normal;
+
   margin-block: calc((1em - 1lh) / 2) !important; /* ハーフレディング */
 }
 
@@ -71,14 +90,137 @@ a.button, button, nav a {
   }
 }
 
+hr {
+  border: 1px solid var(--dashi-stroke);
+  margin-top: calc(var(--dashi-content-mb) * 1.75 * 1px);
+  margin-bottom: calc(var(--dashi-content-mb) * 1.75 * 1px);
+  border-bottom: none;
+}
+
+nav li > a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 h1, h2, h3, h4, h5, h6,
 p, ul, ol, dl, blockquote, pre, table, figure, details, summary, hgroup {
   line-height: 1;
 }
 
 #main {
-  p, ul, ol, blockquote, pre, table, figure, details, summary, hgroup {
+  /* 基本テキストコンテンツの設定 */
+  p, ul, ol, dl, blockquote, pre, table, figure, details, summary, hgroup {
+    --max-horizontal-length: var(--dashi-max-text-length);
     --lh: var(--dashi-lh);
+    --mb: var(--dashi-content-mb);
     line-height: calc(var(--lh) * 1em);
+    margin-bottom: calc(var(--mb) * 1px);
+  }
+
+  .heading-1, .heading-2, .heading-3, .heading-4, .heading-5, .heading-6,
+  p, ul, ol, dl, blockquote, pre, table, figure, details, summary, hgroup, hr {
+    --lh: var(--dashi-lh);
+    line-height: var(--lh);
+    max-width: calc(var(--dashi-fz) * var(--dashi-max-text-length));
+  }
+
+  hr {
+    margin-left: unset;
+    margin-right: unset;
+  }
+
+  [class^="heading-"] {
+    --lh: var(--dashi-lh-heading);
+    line-height: var(--dashi-lh-heading);
+  }
+
+  /* 見出しの設定 */
+  .heading-1, .heading-2, .heading-3, .heading-4, .heading-5, .heading-6 {
+    --lh: var(--dashi-lh);
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .heading-1 {
+    --fz-ratio: 2.05;
+    --fz: calc(var(--dashi-fz) * var(--fz-ratio));
+    font-weight: 500;
+    font-size: var(--fz);
+    margin-top: calc(var(--dashi-fz) * 2);
+    margin-bottom: calc(var(--dashi-fz) * 0.55);
+    color: color-mix(in oklch, var(--dashi-text-main) 90%, #FFFFFF);
+  }
+  .heading-2 {
+    --fz-ratio: 1.389;
+    --fz: calc(var(--dashi-fz) * var(--fz-ratio));
+    font-weight: 800;
+    font-size: var(--fz);
+    color: var(--dashi-text-strong);
+    margin-top: calc(var(--dashi-fz) * 2);
+    margin-bottom: calc(var(--dashi-fz) * 0.55);
+  }
+  .heading-3 {
+    --fz-ratio: 1.35;
+    --fz: calc(var(--dashi-fz) * var(--fz-ratio));
+    font-weight: 600;
+    font-size: var(--fz);
+    color: var(--dashi-text-strong);
+    margin-top: calc(var(--dashi-fz) * 2);
+    margin-bottom: calc(var(--dashi-fz) * 0.7125);
+    color: color-mix(in oklch, var(--dashi-text-main) 90%, #FFFFFF);
+    padding-bottom: 0.25em;
+    border-bottom: 2px solid var(--dashi-stroke);
+    width: fit-content;
+    padding-bottom: 0.35em;
+  }
+
+  .heading-4 {
+    --fz-ratio: 1.1;
+    --fz: calc(var(--dashi-fz) * var(--fz-ratio));
+    font-weight: 800;
+    font-size: var(--fz);
+    color: var(--dashi-text-strong);
+    margin-top: calc(var(--dashi-fz) * 2);
+    margin-bottom: calc(var(--dashi-fz) * 0.55);
+  }
+
+  li {
+    --fz-ratio: 0.925;
+    --fz: calc(var(--dashi-fz) * var(--fz-ratio));
+    max-width: 40ic;
+    font-size: var(--fz);
+    margin-bottom: 0.7125em;
+  }
+  
+  ol li {
+    list-style-type: decimal;
+    margin-left: 1.75em;
+    max-width: calc((var(--dashi-max-text-length) * 1ic) - 1.75em);
+  }
+  
+  ul li {
+    list-style-type: none;
+      margin-left: 1.7em;
+    max-width: calc((var(--dashi-max-text-length) * 1ic) - 1.7em);
+    position: relative;
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 0.35em;
+      height: 0.35em;
+      background-color: color-mix(in oklch, var(--dashi-text-main) 65%, #FFFFFF);
+      border-radius: 50%;
+      margin-right: 0.5em;
+      position: absolute;
+      left: -1em;
+      top: 0.6em;
+    }
+  }
+
+  * + ul, * + ol, * + dl {
+    margin-top: -1.1em;
+    margin-bottom: 1.1em;
   }
 }
