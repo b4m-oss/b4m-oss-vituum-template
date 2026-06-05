@@ -1,6 +1,17 @@
 @import 'reset-css';
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans+JP:wght@100..900&display=swap');
+@import 'partials/utilities.css';
 @import 'partials/base.css';
+@import 'partials/layout.css';
+@import 'context/header.css';
+
+/*
+  レスポンシブ概念
+  - PC: min-width: 1400px, content-width: 1200px
+  - Tablet: min-width: 720px, content-width: fluid
+  - Fablet: min-width: 440px, content-width: fluid
+  - Mobile: max-width: 439px, content-width: fluid 
+*/
 
 
 body {
@@ -13,50 +24,6 @@ main, #main {
   flex: 1;
 }
 
-#global-header {
-  display: grid;
-  grid-template-columns: 50% 50%;
-  grid-template-areas: "masthead nav";
-  align-items: center;
-  background-color: var(--dashi-bg-highlight);
-  padding: 1em;
-  border-bottom: 1px solid var(--dashi-bg-optional);
-}
-
-#masthead {
-  grid-area: masthead;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 17px;
-  .title {
-    --fz-ratio: 1.685;
-    --fz: calc(var(--dashi-fz) * var(--fz-ratio));
-    font-weight: 600;
-    font-size: var(--fz);
-    color: var(--dashi-text-strong);
-  }
-  .description {
-    --fz-ratio: 0.8;
-    --fz: calc(var(--dashi-fz) * var(--fz-ratio));
-    font-size: var(--fz);
-    color: var(--dashi-text-muted);
-  }
-}
-
-#global-nav {
-  grid-area: nav;
-  .nav-list {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 17px;
-  }
-  .nav-item {
-    list-style: none;
-  }
-}
 
 #global-footer {
   padding-top: 0;

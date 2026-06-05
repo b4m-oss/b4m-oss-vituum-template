@@ -9,16 +9,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ title | default('Document') }}</title>
   <link rel="stylesheet" href="/src/assets/styles/main.css">
-  <style>
-  :root {
-    --dashi-max-text-length: 37;
-    --dashi-fz: 1.65rem;
-    --dashi-lh: 1.65;
-    .content-container {
-      max-width: 1440px;
-    }
-  }
-  </style>
 
   {% block endHead %}
   {% endblock %}
@@ -30,7 +20,7 @@
   {% block header %}
   {% endblock %}
   
-  <main id="main">
+  <main class="dashi-main">
   {% block main %}
   {% endblock %}
   </main>

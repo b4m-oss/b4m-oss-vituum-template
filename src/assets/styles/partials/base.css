@@ -19,23 +19,25 @@
   --dashi-fz-mb: 1.55rem;
   --dasshi-lh-mb: 1.55;
 
-  --dashi-lh-heading-mb: 1.15;
+  --dashi-lh-tight: 1.25;
+
+  --dashi-fz: var(--dashi-fz-mb, 1.55);
+  --dashi-lh: var(--dashi-lh-mb, 1.55);
+  --dashi-lh-heading: var(--dashi-lh-tight);
 
   --dashi-fz-pc: 1.65rem;
   --dashi-lh-pc: 1.65;
 
-  @media (min-width: 768px) {
+  @media (min-width: 720px) {
     --dashi-fz: var(--dashi-fz-pc);
     --dashi-lh: var(--dashi-lh-pc);
     /* --dashi-lh-heading: var(--dashi-lh-heading-pc); */
   }
 
-  --dashi-fz: var(--dashi-fz-mb);
-  --dashi-lh: var(--dashi-lh-mb);
-  --dashi-lh-heading: var(--dashi-lh-heading-mb);
+
 
   --dashi-max-text-length: 40; /* 1行の最大文字数。単位：icを想定 */
-  --dashi-content-mb: 30; /* 単位：pxを想定 */
+  --dashi-content-mb: 1.15; /* 単位：emを想定 */
 
   --dashi-text-indent: 0; /* 段落最初のインデント。単位：emを想定 */
 
@@ -71,8 +73,10 @@ body {
   font-optical-sizing: auto;
   font-weight: 350;
   font-style: normal;
-
-  margin-block: calc((1em - 1lh) / 2) !important; /* ハーフレディング */
+  
+  & * {
+    margin-block: calc((1em - 1lh) / 2); /* ハーフレディング */
+  }
 }
 
 a {
@@ -97,14 +101,7 @@ a.button, button, nav a {
   }
 }
 
-@media (min-width: 720px) {
-  .hide-for-pc {
-    display: none;
-  }
-  .show-for-mobile {
-    display: block;
-  }
-}
+
 
 
 strong {
@@ -114,8 +111,8 @@ strong {
 
 hr {
   border: 1px solid var(--dashi-stroke);
-  margin-top: calc(var(--dashi-content-mb) * 1.75 * 1px);
-  margin-bottom: calc(var(--dashi-content-mb) * 1.75 * 1px);
+  margin-top: calc(var(--dashi-content-mb) * 1.75 * 1em);
+  margin-bottom: calc(var(--dashi-content-mb) * 1.75 * 1em);
   border-bottom: none;
 }
 
@@ -135,237 +132,3 @@ p, ul, ol, dl, blockquote, pre, table, figure, details, summary, hgroup {
   line-height: 1;
 }
 
-#main, .main {
-  padding-top: 30px;
-  padding-bottom: 30px;
-  /* 基本テキストコンテンツの設定 */
-  p, ul, ol, dl, blockquote, pre, table, figure, details, summary, hgroup {
-    --max-horizontal-length: var(--dashi-max-text-length);
-    --lh: var(--dashi-lh);
-    --mb: var(--dashi-content-mb);
-    line-height: calc(var(--lh) * 1em);
-    margin-bottom: calc(var(--mb) * 1px);
-  }
-
-  .heading-1, .heading-2, .heading-3, .heading-4, .heading-5, .heading-6,
-  p, ul, ol, dl, blockquote, pre, table, figure, details, summary, hgroup, hr {
-    --lh: var(--dashi-lh);
-    line-height: var(--lh);
-    max-width: calc(var(--dashi-fz) * var(--dashi-max-text-length));
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  [class^="heading-"] {
-    --lh: var(--dashi-lh-heading);
-    line-height: var(--dashi-lh-heading);
-  }
-
-  /* 見出しの設定 */
-  .heading-1, .heading-2, .heading-3, .heading-4, .heading-5, .heading-6 {
-    --lh: var(--dashi-lh);
-    &:first-child {
-      margin-top: 0;
-    }
-    & + *:not(p) {
-      margin-top: 1.75em;
-    }
-  }
-
-  .heading-1 {
-    --fz-ratio: 2.05;
-    --fz: calc(var(--dashi-fz) * var(--fz-ratio));
-    font-weight: 500;
-    font-size: var(--fz);
-    margin-top: calc(var(--dashi-fz) * 2);
-    margin-bottom: calc(var(--dashi-fz) * 0.55);
-    color: color-mix(in oklch, var(--dashi-text-main) 90%, #FFFFFF);
-  }
-  .heading-2 {
-    --fz-ratio: 1.389;
-    --fz: calc(var(--dashi-fz) * var(--fz-ratio));
-    font-weight: 800;
-    font-size: var(--fz);
-    color: color-mix(in oklch, var(--dashi-text-strong) 60%, #FFFFFF);
-    margin-top: calc(var(--dashi-fz) * 2);
-    margin-bottom: calc(var(--dashi-fz) * 0.675);
-  }
-  .heading-3 {
-    --fz-ratio: 1.35;
-    --fz: calc(var(--dashi-fz) * var(--fz-ratio));
-    font-weight: 600;
-    font-size: var(--fz);
-    color: var(--dashi-text-strong);
-    margin-top: calc(var(--dashi-fz) * 2);
-    margin-bottom: calc(var(--dashi-fz) * 0.7125);
-    color: color-mix(in oklch, var(--dashi-text-main) 90%, #FFFFFF);
-    padding-bottom: 0.25em;
-    width: fit-content;
-    padding-bottom: 0.625em;
-    min-width: calc(var(--dashi-fz) * var(--dashi-max-text-length));
-    position: relative;
-    &::after {
-      content: "";
-      display: block;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 2.5em;
-      height: 2px;
-      background-color: var(--dashi-stroke);
-      margin-top: 0.25em;
-    }
-  }
-
-  .heading-4 {
-    --fz-ratio: 1.1;
-    --fz: calc(var(--dashi-fz) * var(--fz-ratio));
-    font-weight: 800;
-    font-size: var(--fz);
-    color: var(--dashi-text-strong);
-    margin-top: calc(var(--dashi-fz) * 2);
-    margin-bottom: calc(var(--dashi-fz) * 0.55);
-  }
-
-  li {
-    --fz-ratio: 0.925;
-    --fz: calc(var(--dashi-fz) * var(--fz-ratio));
-    max-width: 40ic;
-    font-size: var(--fz);
-    margin-bottom: 0.7125em;
-  }
-  
-  ol li {
-    list-style-type: decimal;
-    margin-left: 1.75em;
-    max-width: calc((var(--dashi-max-text-length) * 1ic) - 1.75em);
-  }
-  
-  ul li {
-    list-style-type: none;
-      margin-left: 1.7em;
-    max-width: calc((var(--dashi-max-text-length) * 1ic) - 1.7em);
-    position: relative;
-    &::before {
-      content: "";
-      display: inline-block;
-      width: 0.35em;
-      height: 0.35em;
-      background-color: color-mix(in oklch, var(--dashi-text-main) 65%, #FFFFFF);
-      border-radius: 50%;
-      margin-right: 0.5em;
-      position: absolute;
-      left: -1em;
-      top: 0.6em;
-    }
-  }
-
-  * + ul, * + ol, * + dl {
-    margin-top: -1.1em;
-    margin-bottom: 1.1em;
-  }
-}
-
-.content-container {
-  --padding: var(--dashi-space-main);
-  padding: calc(var(--padding) * 1px);
-  background-color: var(--dashi-bg-highlight);
-  max-width: calc(100svw - 60px);
-  /* width: fit-content; */
-  margin-left: auto;
-  margin-right: auto;
-  --radius: var(--dashi-radius, 5);
-  border-radius: calc(var(--dashi-radius) * 1px);
-  .content {
-    margin: 0 auto;
-    max-width: 100%;
-  }
-}
-
-table {
-  position: relative;
-  min-width: 20ic;
-  max-width: 1180px;
-
-  tbody tr:first-child {
-    border-top: 1px solid var(--dashi-stroke);
-  }
-  
-  th, td {
-    font-size: 1em;
-    padding: 0.675em;
-    border-bottom: 1px solid var(--dashi-stroke);
-  }
-  th {
-    font-weight: bold;
-    letter-spacing: 0;
-    text-align: left;
-    min-width: 7em;
-    max-width: 20%;
-    /* text-align: justify; */
-  }
-  tr:nth-child(even) {
-    th,td {
-      background-color: var(--dashi-bg-optional);
-    }
-    td {
-      color: color-mix(in oklch, var(--dashi-text-main) 75%, #000);
-    }
-  }
-
-  /* 横に長いテーブルの設定 */
-  thead {
-    tr {
-      position: relative;
-      z-index: 10;
-    }
-    th {
-      background-color: var(--dashi-bg-highlight);
-      position: sticky;
-      border-top: 1px solid var(--dashi-stroke);
-      top: -1px;
-      background-color: var(--dashi-bg-highlight);
-    }
-  }
-  tr:has(> :nth-child(3)) {
-    position: relative;
-    th {
-      max-width: 15%;
-      position: sticky;
-      left: 0;
-      background-color: var(--dashi-bg-highlight);
-    }
-    &:nth-child(even) th {
-      background-color: var(--dashi-bg-optional);
-    }
-    td {
-      min-width: 15ic;
-      max-width: 35ic;
-    }
-  }
-}
-
-.table-container {
-  container-type: inline-size;
-  container-name: dashi-has-table;
-  max-height: 40em;
-  overflow: scroll;
-  max-width: 1180px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-@container dashi-has-table (width < 380px) {
-  table, table * {
-    display: block !important;
-  }
-  table th,table td {
-    width: 100%;
-    min-width: unset;
-    max-width: unset;
-  }
-  table th {
-    border-bottom: none;
-    padding-bottom: 0em;
-  }
-}
