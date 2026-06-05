@@ -276,9 +276,28 @@ table {
       }
     }
   }
+}
+
+.dashi-container .content {
   table th {
     border-bottom: none;
     padding-bottom: 0em;
+  }
+  & > * {
+    padding-left: 5.5%;
+    padding-right: 5.5%;
+  }
+
+  & > .optional {
+    margin-left: 5.5%;
+    margin-right: 5.5%;
+    width: calc(100% - 11%);
+  }
+
+  & > .table-container {
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
   }
 }
 
@@ -406,8 +425,8 @@ dl.grouped {
     width: 100%;
     min-width: unset;
     max-width: unset;
-    padding-left: 5.5%;
-    padding-right: 5.5%;
+    padding-left: 0;
+    padding-right: 0;
     padding-top: 5.5cqw;
   }
 
