@@ -1,17 +1,24 @@
-# b4m-vituum-template
+# @b4moss/mpa-html-site-starter
 
-A basic multi-page static site template.
+Vite + Vituum + Twig のマルチページ静的サイト雛形をスキャフォールドします。
 
-## Install
+## Usage
 
 ```shell
-git clone https://github.com/b4m-oss/b4m-oss-vituum-template your-project-name
-cd your-project-name
+npx @b4moss/mpa-html-site-starter my-site
+cd my-site
 npm i
-```
-
-## Start to dev
-
-```shell
 npm run dev
 ```
+
+## Scripts（生成後のプロジェクト）
+
+| Script | 内容 |
+| --- | --- |
+| `npm run dev` | 開発サーバ |
+| `npm run build` | 本番ビルド |
+| `npm run preview` | ビルド結果のプレビュー |
+
+## License
+
+MIT

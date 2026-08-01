@@ -1,20 +1,37 @@
 {
-  "name": "b4moss-dashi",
-  "private": true,
+  "name": "@b4moss/mpa-html-site-starter",
   "version": "0.1.0",
+  "description": "Scaffold a Vite + Vituum + Twig multi-page static site",
   "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+  "bin": {
+    "mpa-html-site-starter": "./bin/cli.js"
   },
-  "devDependencies": {
-    "@vituum/vite-plugin-twig": "^2.0.1",
-    "typescript": "~6.0.2",
-    "vite": "^8.0.12",
-    "vituum": "^2.0.2"
+  "files": [
+    "bin",
+    "template"
+  ],
+  "engines": {
+    "node": ">=18"
   },
-  "dependencies": {
-    "reset-css": "^5.0.2"
+  "keywords": [
+    "vite",
+    "vituum",
+    "twig",
+    "mpa",
+    "static-site",
+    "starter",
+    "scaffold"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/b4m-oss/mpa-html-site-starter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/b4m-oss/mpa-html-site-starter/issues"
+  },
+  "homepage": "https://github.com/b4m-oss/mpa-html-site-starter#readme",
+  "publishConfig": {
+    "access": "public"
   }
 }

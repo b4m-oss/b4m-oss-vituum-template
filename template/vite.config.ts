@@ -9,6 +9,6 @@ export default {
         }),
     ],
     server: {
-      allowedHosts: ['localhost', '3f6a-175-131-59-185.ngrok-free.app'],
+      allowedHosts: ['localhost'],
     },
 }
