@@ -1,6 +1,6 @@
 {
   "name": "@b4moss/mpa-html-site-starter",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Scaffold a Vite + Vituum + Twig multi-page static site",
   "type": "module",
   "bin": {

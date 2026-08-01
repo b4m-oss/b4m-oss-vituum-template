@@ -1,6 +1,8 @@
 # @b4moss/mpa-html-site-starter
 
-Vite + Vituum + Twig のマルチページ静的サイト雛形をスキャフォールドします。
+[English](README.md) | [日本語](README_ja.md)
+
+Scaffolds a multi-page static site starter built with Vite, Vituum, and Twig.
 
 ## Usage
 
@@ -11,14 +13,14 @@ npm i
 npm run dev
 ```
 
-## Scripts（生成後のプロジェクト）
+## Scripts (generated project)
 
-| Script | 内容 |
+| Script | Description |
 | --- | --- |
-| `npm run dev` | 開発サーバ |
-| `npm run build` | 本番ビルド |
-| `npm run preview` | ビルド結果のプレビュー |
+| `npm run dev` | Start the development server |
+| `npm run build` | Build for production |
+| `npm run preview` | Preview the production build |
 
 ## License
 
-MIT
+MIT License
