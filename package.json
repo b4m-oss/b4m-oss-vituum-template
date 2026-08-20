@@ -25,12 +25,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/b4m-oss/mpa-html-site-starter.git"
+    "url": "git+https://github.com/b4moss/mpa-html-site-starter.git"
   },
   "bugs": {
-    "url": "https://github.com/b4m-oss/mpa-html-site-starter/issues"
+    "url": "https://github.com/b4moss/mpa-html-site-starter/issues"
   },
-  "homepage": "https://github.com/b4m-oss/mpa-html-site-starter#readme",
+  "homepage": "https://github.com/b4moss/mpa-html-site-starter#readme",
   "publishConfig": {
     "access": "public"
   }
