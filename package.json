@@ -33,5 +33,12 @@
   "homepage": "https://github.com/b4m-oss/mpa-html-site-starter#readme",
   "publishConfig": {
     "access": "public"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "test:coverage": "c8 --reporter=lcov --reporter=text npm test"
+  },
+  "devDependencies": {
+    "c8": "^10.1.3"
   }
 }
